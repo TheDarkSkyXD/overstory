@@ -43,6 +43,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Coordinator auto-complete on session-end** — `ov run complete` is no longer called automatically from the per-turn Stop hook, preventing premature run completion
 - **Self-exiting coordinator** — session-end hook now handles coordinators that exit themselves (e.g., via exit triggers) without throwing errors
 - **`--json` flag stolen by parent Commander** — `.enablePositionalOptions()` added to the root program so subcommand `--json` flags are not consumed by the parent parser
+- **Pi runtime transcript parsing** — Pi v3 JSONL format stores token usage inside `message` events at `message.usage.{input, output, cacheRead}`, not in `message_end` events; parser now handles both formats with `cacheRead` counted toward input tokens (#82)
+- **Pi `getTranscriptDir()`** — now returns `~/.pi/agent/sessions/{encoded-project-path}/` instead of `null`, enabling `ov costs` for Pi agents (#82)
 
 ### Changed
 
